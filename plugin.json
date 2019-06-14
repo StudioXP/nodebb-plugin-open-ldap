@@ -1,8 +1,8 @@
 {
-	"id": "nodebb-plugin-office-ldap",
-	"name": "OpenLDAP",
+	"id": "nodebb-plugin-yingying-ldap",
+	"name": "OpenLDAP-yingying",
 	"description": "An OpenLDAP plugin",
-	"url": "https://github.com/meredrica/nodebb-plugin-office-ldap",
+	"url": "https://github.com/blair-0/nodebb-plugin-open-ldap",
 	"library": "./index.js",
 	"hooks": [
 		{

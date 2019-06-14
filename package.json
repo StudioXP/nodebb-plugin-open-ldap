@@ -1,11 +1,11 @@
 {
-  "name": "nodebb-plugin-sso-open-ldap",
+  "name": "nodebb-plugin-yingying-ldap",
   "version": "1.0.2",
   "description": "OpenLDAP Login",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/meredrica/nodebb-plugin-open-ldap"
+    "url": "https://github.com/blair-0/nodebb-plugin-open-ldap"
   },
   "keywords": [
     "nodebb",
