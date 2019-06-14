@@ -165,10 +165,10 @@
                             return next(err);
                         }
                         var opt = {
-                            filter: master_config.user_query.replace('%uid', username),
+                            filter: master_config.user_query.replace('%sAMAccountName', username),
                             sizeLimit: 1,
                             scope: 'sub',
-                            attributes: ['dn', 'uid', 'sn', 'mail', //these fields are mandatory
+                            attributes: ['dn', 'sAMAccountName', 'sn', 'mail', //these fields are mandatory
                                 // optional fields. used to create the user id/fullname
                                 'givenName', 'displayName',
                             ]
@@ -232,14 +232,14 @@
                 fullname = profile.displayName;
             }
 
-            open_ldap.getUserByLdapUid(profile.uid, (err, dbUser) => {
+            open_ldap.getUserByLdapUid(profile.sAMAccountName, (err, dbUser) => {
                 if (err) {
                     return callback(err);
                 }
                 if (dbUser.uid !== 0) {
                     // user exists
                     // now we check the user groups
-                    return open_ldap.postLogin(dbUser.uid, profile.uid, callback);
+                    return open_ldap.postLogin(dbUser.uid, profile.sAMAccountName, callback);
                 } else {
                     // New User
                     var pattern = new RegExp(/[\ ]*\(.*\)/);
@@ -253,11 +253,11 @@
                         }
 
                         User.setUserFields(uid, {
-                            'openldap:uid:': profile.uid,
+                            'openldap:uid:': profile.sAMAccountName,
                             'email:confirmed': 1
                         });
-                        db.setObjectField('ldapid:uid', profile.uid, uid)
-                        return open_ldap.postLogin(uid, profile.uid, callback);
+                        db.setObjectField('ldapid:uid', profile.sAMAccountName, uid)
+                        return open_ldap.postLogin(uid, profile.sAMAccountName, callback);
                     });
                 }
             });
